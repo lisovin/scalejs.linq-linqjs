@@ -1,0 +1,8 @@
+
+/build
+/obj
+/packages
+/TestResults
+/.nuget/nuget.exe
+/scalejs.linq.csproj.user
+/scalejs.linq.v11.suo
