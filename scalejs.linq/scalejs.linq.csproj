@@ -9,19 +9,15 @@
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="js\scalejs.linq.js" />
-    <Content Include="js\scalejs.linq\enumerable.js" />
     <Content Include="Properties\build.rjs" />
-    <Content Include="Properties\test.js" />
-    <Content Include="Scripts\jasmine.js" />
+    <Content Include="bootstrapper.js" />
+    <Content Include="scalejs.linq.js" />
+    <Content Include="scalejs.linq\enumerable.js" />
     <Content Include="Scripts\linq-vsdoc.js" />
     <Content Include="Scripts\linq.js" />
     <Content Include="Scripts\linq.min.js" />
-    <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\scalejs-0.1.1.js" />
-    <Content Include="Scripts\scalejs-0.1.1.min.js" />
-    <Content Include="test\all.tests.js" />
-    <Content Include="test\scalejs.linq.test.js" />
+    <Content Include="Scripts\scalejs-0.1.10.js" />
+    <Content Include="Scripts\scalejs-0.1.10.min.js" />
     <Content Include="tools\Converter.fsx" />
     <Content Include="tools\install.ps1" />
     <Content Include="tools\uninstall.ps1" />
@@ -31,8 +27,7 @@
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
-    <ScalejsExtension>True</ScalejsExtension>
-    <ScalejsBaseUrl>js</ScalejsBaseUrl>
+    <ScalejsProjectType>Extension</ScalejsProjectType>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>scalejs.linq</RootNamespace>

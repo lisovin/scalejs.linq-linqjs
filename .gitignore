@@ -6,3 +6,5 @@
 /.nuget/nuget.exe
 /scalejs.linq.csproj.user
 /scalejs.linq.v11.suo
+/scalejs.linq/build
+/scalejs.linq/obj
