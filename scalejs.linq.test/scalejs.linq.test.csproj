@@ -23,6 +23,7 @@
     <Content Include="Scripts\scalejs.linq-0.1.0.js" />
     <Content Include="Scripts\scalejs.linq-0.1.0.min.js" />
     <Content Include="tests\all.tests.js" />
+    <Content Include="tests\enumerable.test.js" />
     <Content Include="tests\scalejs.linq.test.js" />
   </ItemGroup>
   <ItemGroup>

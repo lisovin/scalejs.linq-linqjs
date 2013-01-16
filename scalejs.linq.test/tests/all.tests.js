@@ -1,4 +1,5 @@
 /*global define*/
 define([
-    './scalejs.linq.test'
+    './scalejs.linq.test',
+    './enumerable.test'
 ]);
