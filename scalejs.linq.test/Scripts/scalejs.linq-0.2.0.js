@@ -68,7 +68,8 @@ define('scalejs.linq/enumerable',[ 'linq' ], function (Enumerable) {
         };
 
         e.concat = function (second) {
-            return enumerable(Enumerable.prototype.Concat.apply(linqEnumerable, arguments));
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second);
+            return enumerable(linqEnumerable.Concat(le));
         };
 
         e.insert = function (index, second) {
@@ -371,16 +372,18 @@ define('scalejs.linq/enumerable',[ 'linq' ], function (Enumerable) {
 });
 /*global define*/
 define('scalejs.linq',[
+    'scalejs!core',
     './scalejs.linq/enumerable'
 ], function (
+    core,
     enumerable
 ) {
     
 
-    return {
+    core.registerExtension({
         linq: {
             enumerable: enumerable
         }
-    };
+    });
 });
 

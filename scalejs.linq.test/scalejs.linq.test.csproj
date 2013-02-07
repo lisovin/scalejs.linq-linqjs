@@ -18,10 +18,10 @@
     <Content Include="Scripts\linq.js" />
     <Content Include="Scripts\linq.min.js" />
     <Content Include="Scripts\require.js" />
-    <Content Include="Scripts\scalejs-0.1.10.js" />
-    <Content Include="Scripts\scalejs-0.1.10.min.js" />
-    <Content Include="Scripts\scalejs.linq-0.1.0.js" />
-    <Content Include="Scripts\scalejs.linq-0.1.0.min.js" />
+    <Content Include="Scripts\scalejs-0.2.0.js" />
+    <Content Include="Scripts\scalejs-0.2.0.min.js" />
+    <Content Include="Scripts\scalejs.linq-0.2.0.js" />
+    <Content Include="Scripts\scalejs.linq-0.2.0.min.js" />
     <Content Include="tests\all.tests.js" />
     <Content Include="tests\enumerable.test.js" />
     <Content Include="tests\scalejs.linq.test.js" />

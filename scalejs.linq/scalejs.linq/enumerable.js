@@ -45,9 +45,11 @@ define([ 'linq' ], function (Enumerable) {
             return enumerable(Enumerable.prototype.OfType.apply(linqEnumerable, arguments));
         };
 
-        e.zip = function (source, selector) {
-            var le = source.unwrap();
-            return enumerable(linqEnumerable.Zip(le, selector));
+        e.zip = function (second) {
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second),
+                args = Array.prototype.slice.call(arguments);
+            args[0] = le;
+            return enumerable(Enumerable.prototype.Zip.apply(linqEnumerable, args));
         };
 
         e.join = function (inner, outerKeySelector, innerKeySelector, resultSelector, compareSelector) {
@@ -67,7 +69,10 @@ define([ 'linq' ], function (Enumerable) {
         };
 
         e.concat = function (second) {
-            return enumerable(Enumerable.prototype.Concat.apply(linqEnumerable, arguments));
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second),
+                args = Array.prototype.slice.call(arguments);
+            args[0] = le;
+            return enumerable(Enumerable.prototype.Concat.apply(linqEnumerable, args));
         };
 
         e.insert = function (index, second) {
@@ -90,20 +95,29 @@ define([ 'linq' ], function (Enumerable) {
             return enumerable(Enumerable.prototype.Distinct.apply(linqEnumerable, arguments));
         };
 
-        e.except = function (second, compareSelector) {
-            return enumerable(Enumerable.prototype.Except.apply(linqEnumerable, arguments));
+        e.except = function (second) {
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second),
+                args = Array.prototype.slice.call(arguments);
+            args[0] = le;
+            return enumerable(Enumerable.prototype.Except.apply(linqEnumerable, args));
         };
 
-        e.intersect = function (second, compareSelector) {
-            return enumerable(Enumerable.prototype.Intersect.apply(linqEnumerable, arguments));
+        e.intersect = function (second) {
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second),
+                args = Array.prototype.slice.call(arguments);
+            args[0] = le;
+            return enumerable(Enumerable.prototype.Intersect.apply(linqEnumerable, args));
         };
 
         e.sequenceEqual = function (second, compareSelector) {
             return Enumerable.prototype.SequenceEqual.apply(linqEnumerable, arguments);
         };
 
-        e.union = function (second, compareSelector) {
-            return enumerable(Enumerable.prototype.Union.apply(linqEnumerable, arguments));
+        e.union = function (second) {
+            var le = second.unwrap ? second.unwrap() : Enumerable.From(second),
+                args = Array.prototype.slice.call(arguments);
+            args[0] = le;
+            return enumerable(Enumerable.prototype.Union.apply(linqEnumerable, args));
         };
 
         e.orderBy = function (keySelector) {
@@ -122,8 +136,13 @@ define([ 'linq' ], function (Enumerable) {
             return enumerable(Enumerable.prototype.Shuffle.apply(linqEnumerable, arguments));
         };
 
-        e.groupBy = function (keySelector, elementSelector, resultSelector, compareSelector) {
-            return enumerable(Enumerable.prototype.GroupBy.apply(linqEnumerable, arguments));
+        e.groupBy = function () {
+            return enumerable(Enumerable.prototype.GroupBy.apply(linqEnumerable, arguments).Select(function (g) {
+                var eg = enumerable(g);
+                eg.key = g.Key;
+                //return eg;
+                return eg;
+            }));
         };
 
         e.partitionBy = function (keySelector, elementSelector, resultSelector, compareSelector) {

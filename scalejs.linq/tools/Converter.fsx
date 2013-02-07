@@ -86,10 +86,26 @@ let convert scope methods =
                          sprintf "        return result.unwrap();"
                          sprintf "    }));"
                          sprintf "};\n"]
-                    | "zip" ->
-                        [sprintf "e.zip = function (source, selector) {"
-                         sprintf "    var le = source.unwrap();"
-                         sprintf "    return enumerable(linqEnumerable.Zip(le, selector));"
+                    | "groupBy" ->
+                        [sprintf "e.groupBy = function () {"
+                         sprintf "    return enumerable(linqEnumerable.GroupBy(arguments).Select(function (g) {"
+                         sprintf "        var eg = enumerable(g);"
+                         sprintf "        eg.key = g.Key();"
+                         sprintf "        return eg;"
+                         sprintf "    }));"
+                         sprintf "};\n"]
+
+                    | "zip"
+                    | "concat"
+                    | "except"
+                    | "intersect" 
+                    | "sequenceEqual" 
+                    | "union" ->
+                        [sprintf "e.%s = function (second) {" fc 
+                         sprintf "    var le = second.unwrap ? second.unwrap() : Enumerable.From(second),"
+                         sprintf "        args = Array.prototype.slice.call(arguments);"
+                         sprintf "    args[0] = le;"
+                         sprintf "    return enumerable(Enumerable.%s.apply(%s, args));" target instance
                          sprintf "};\n"]
                     | _ -> 
                         [sprintf "e.%s = function (%s) {" fc ps

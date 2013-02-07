@@ -4,8 +4,8 @@
 require({
     "paths":  {
         "linq":  "Scripts/linq",
-        "scalejs":  "Scripts/scalejs-0.1.10",
-        "scalejs.linq":  "../scalejs.linq/build/scalejs.linq-0.1.0"
+        "scalejs":  "Scripts/scalejs-0.2.0",
+        "scalejs.linq":  "../scalejs.linq/build/scalejs.linq-0.2.0"
     },
     "scalejs":  {
         "extensions":  [
