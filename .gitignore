@@ -10,3 +10,7 @@
 /scalejs.linq/obj
 /scalejs.linq.test/build
 /scalejs.linq.test/obj
+/scalejs.linq-linqjs/build
+/scalejs.linq-linqjs/obj
+/scalejs.linq-linqjs/scalejs.linq-linqjs.csproj.user
+*.suo

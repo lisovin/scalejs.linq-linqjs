@@ -1,8 +1,0 @@
-﻿({
-    mainConfigFile: '../bootstrapper.js',
-    include: 'scalejs.linq',
-    exclude: [
-        'scalejs!core',
-		'linq'
-    ]
-})

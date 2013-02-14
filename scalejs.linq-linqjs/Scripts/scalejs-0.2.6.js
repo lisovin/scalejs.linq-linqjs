@@ -1,6 +1,6 @@
 
 /*global define,window */
-define('scalejs',[],function () {
+define('scalejs',['es5-shim'], function () {
     
 
     var windowType = typeof (window);
@@ -14,6 +14,7 @@ define('scalejs',[],function () {
         load: function (name, req, load, config) {
             var extensionNames = config.scalejs ? config.scalejs.extensions || [] : [],
                 moduleName = 'scalejs/' + name;
+
             req([moduleName], function (loadedModule) {
                 if (moduleName === 'scalejs/application') {
                     req(extensionNames, function () {
@@ -529,32 +530,37 @@ define('scalejs/base.log',[
         return 'Error: ' + message + '\nStack: ' + stack;
     }
 
-    function info(message) {
-        if (has(window.console)) {
-            window.console.info(message);
+    function info() {
+        if (has(window, 'console', 'info')) {
+            window.console.info.apply(window.console, arguments);
         }
     }
 
-    function warn(message) {
-        if (has(window.console)) {
-            window.console.warn(message);
+    function warn() {
+        if (has(window, 'console', 'warn')) {
+            window.console.warn.apply(window.console, arguments);
+            return;
         }
+
+        info(arguments);
     }
 
-    function error(message) {
-        if (has(window.console)) {
-            window.console.error(message);
+    function error() {
+        if (has(window, 'console', 'error')) {
+            window.console.error.apply(window.console, arguments);
+            return;
         }
+
+        info(arguments);
     }
 
-    function debug(message) {
-        if (has(window.console)) {
-            if (has(window.console, 'debug')) {
-                window.console.debug(message);
-            } else {
-                window.console.info(message);
-            }
+    function debug() {
+        if (has(window, 'console', 'debug')) {
+            window.console.debug.apply(window.console, arguments);
+            return;
         }
+
+        info(arguments);
     }
 
     return {
@@ -627,6 +633,7 @@ define('scalejs/sandbox',[
 });
 
 /*global define */
+/// <reference path="../Scripts/es5-shim.js" />
 define('scalejs/core',[
     './base',
     './sandbox'
@@ -644,7 +651,8 @@ define('scalejs/core',[
             error = base.log.error,
             formatException = base.log.formatException,
             extensionRegistrations = [],
-            core;
+            core,
+            applicationStartedListeners = [];
 
         function registerExtension(extension) {
             var message;
@@ -702,13 +710,25 @@ define('scalejs/core',[
             return sandbox;
         }
 
+        function onApplicationStarted(listener) {
+            applicationStartedListeners.push(listener);
+        }
+
+        function notifyApplicationStarted() {
+            applicationStartedListeners.forEach(function (listener) {
+                listener();
+            });
+        }
+
         core = {
             type: base.type,
             object: base.object,
             array: base.array,
             log: base.log,
             registerExtension: registerExtension,
-            buildSandbox: buildSandbox
+            buildSandbox: buildSandbox,
+            notifyApplicationStarted: notifyApplicationStarted,
+            onApplicationStarted: onApplicationStarted
         };
 
         return core;
@@ -721,7 +741,7 @@ define('scalejs/core',[
  */
 /*global define,window */
 define('scalejs/application',[
-    './core'
+    'scalejs!core'
 ], function (
     core
 ) {
@@ -794,6 +814,8 @@ define('scalejs/application',[
 
         applicationState = 'STARTED';
         core.log.debug("Application started.");
+
+        core.notifyApplicationStarted();
     }
 
     function stopAll() {
@@ -822,7 +844,6 @@ define('scalejs/application',[
         createAll();
         startAll();
         window.onunload = stopAll;
-        //unloadSubscription = subscribeToEvent("unload", window, endAll);
     }
 
     return {

@@ -1,16 +1,16 @@
 /*global define*/
 define([
     'scalejs!core',
-    './scalejs.linq/enumerable'
+    'linqjs'
 ], function (
     core,
-    enumerable
+    Enumerable
 ) {
     'use strict';
 
     core.registerExtension({
         linq: {
-            enumerable: enumerable
+            enumerable: Enumerable
         }
     });
 });

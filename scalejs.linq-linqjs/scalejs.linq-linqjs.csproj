@@ -1,37 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{1DFAD490-E2BB-4230-BDF8-C59242995B6F}</ProjectGuid>
+    <ProjectGuid>{CBB3D24D-A50D-45B2-9F11-0907BF96DF42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <OutputPath>build</OutputPath>
     <JSLintSkip>\Scripts\</JSLintSkip>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Properties\build.rjs" />
-    <Content Include="bootstrapper.js" />
-    <Content Include="scalejs.linq.js" />
-    <Content Include="scalejs.linq\enumerable.js" />
+    <Content Include="Properties\scalejs.linq-linqjs.nuspec" />
+    <Content Include="scalejs.linq-linqjs.js" />
+    <Content Include="Scripts\es5-shim.js" />
+    <Content Include="Scripts\es5-shim.min.js" />
     <Content Include="Scripts\linq-vsdoc.js" />
     <Content Include="Scripts\linq.js" />
+    <Content Include="Scripts\linq.js.d.ts" />
     <Content Include="Scripts\linq.min.js" />
-    <Content Include="Scripts\scalejs-0.1.10.js" />
-    <Content Include="Scripts\scalejs-0.1.10.min.js" />
-    <Content Include="tools\Converter.fsx" />
+    <Content Include="Scripts\scalejs-0.2.6.js" />
+    <Content Include="Scripts\scalejs-0.2.6.min.js" />
     <Content Include="tools\install.ps1" />
     <Content Include="tools\uninstall.ps1" />
+    <Content Include="bootstrapper.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <ScalejsProjectType>Extension</ScalejsProjectType>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>scalejs.linq</RootNamespace>
+    <RootNamespace>scalejs.linq_linqjs</RootNamespace>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" />
   <Import Project="$(SolutionDir)\.scalejs\Scalejs.targets" />
 </Project>
