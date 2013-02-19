@@ -19,9 +19,15 @@
     <Content Include="Scripts\es5-shim.min.js" />
     <Content Include="Scripts\jasmine-html.js" />
     <Content Include="Scripts\jasmine.js" />
+    <Content Include="Scripts\linq-vsdoc.js" />
+    <Content Include="Scripts\linq.js" />
+    <Content Include="Scripts\linq.js.d.ts" />
+    <Content Include="Scripts\linq.min.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\scalejs-0.2.6.js" />
     <Content Include="Scripts\scalejs-0.2.6.min.js" />
+    <Content Include="Scripts\scalejs.linq-linqjs-3.0.3.js" />
+    <Content Include="Scripts\scalejs.linq-linqjs-3.0.3.min.js" />
     <Content Include="test\all.tests.js" />
     <Content Include="test\scalejs.linq-linqjs.test.js" />
   </ItemGroup>
