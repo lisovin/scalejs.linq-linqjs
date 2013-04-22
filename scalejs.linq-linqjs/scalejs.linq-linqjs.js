@@ -8,6 +8,8 @@ define([
 ) {
     'use strict';
 
+    Enumerable.Utils.extendTo(Array);
+
     core.registerExtension({
         linq: {
             enumerable: Enumerable
