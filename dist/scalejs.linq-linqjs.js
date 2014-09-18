@@ -1,28 +1,19 @@
 
 define('scalejs.linq-linqjs',[
-    'scalejs!core'
+    'scalejs!core',
+    'linqjs'
 ], function (
-    core
+    core,
+    Enumerable
 ) {
     
 
-    // There are few ways you can register an extension.
-    // 1. Core and Sandbox are extended in the same way:
-    //      core.registerExtension({ part1: part1 });
-    //
-    // 2. Core and Sandbox are extended differently:
-    //      core.registerExtension({
-    //          core: {corePart: corePart},
-    //          sandbox: {sandboxPart: sandboxPart}
-    //      });
-    //
-    // 3. Core and Sandbox are extended dynamically:
-    //      core.registerExtension({
-    //          buildCore: buildCore,
-    //          buildSandbox: buildSandbox
-    //      });
+    Enumerable.Utils.extendTo(Array);
+
     core.registerExtension({
-        linq: {}
+        linq: {
+            enumerable: Enumerable
+        }
     });
 });
 
