@@ -1,0 +1,23 @@
+{
+  "name": "scalejs.linq-linqjs",
+  "version": "3.0.3",
+  "homepage": "https://github.com/lisovin/scalejs.linq-linqjs",
+  "authors": [
+    "Peer Lisovin <peter@lisovin.com> (https://github.com/lisovin)"
+  ],
+  "description": "Linq extension for scalable JavaScript application",
+  "main": [
+    "dist/scalejs.linq-linqjs.min.js"
+  ],
+  "ignore": [
+    "*",
+    "!dist/*.js"
+  ],
+  "dependencies": {
+    "scalejs": "lisovin/scalejs",
+    "linqjs": "*"
+  },
+  "devDependencies": {
+    "requirejs": "latest"
+  }
+}
